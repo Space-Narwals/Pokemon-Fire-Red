@@ -1,7 +1,8 @@
 import pygame;
 
-class PalletTownSprite():
-    def __init__(self):
-        print "Memes"
+class PalletTownSprite(pygame.sprite.Sprite):
 
-
+    def __init__(self, id):
+        super.__init__();
+        if id == 1:
+            print "Selecting 1"
