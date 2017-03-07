@@ -3,13 +3,15 @@ import os
 
 from sprite.pallettowninterior import PalletTownSprite
 
+
 version = "1.0.0 BETA"
-SCALE = 5
+SCALE = 3
 clock = pygame.time.Clock()
 GREEN = (124,252,0);
-
+screen = None
 
 def main():
+    running = True
     print "Starting Pokemon Fire Red Version:", version
     pygame.init()
     os.environ['SDL_VIDEO_CENTERED'] = '1'
@@ -17,11 +19,20 @@ def main():
 
     screen = pygame.display.set_mode((240 * SCALE, 160 * SCALE))
 
-    terrian_sprites = pygame.sprite.Group();
+    rect = screen.get_rect()
+    background = PalletTownSprite();
+    background_group = pygame.sprite.RenderPlain(background);
 
-    while 1:
+    while running:
         clock.tick(60)
         screen.fill(GREEN)
+        background_group.draw(screen);
         pygame.display.flip()
-main()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                print(event)
 
+    pygame.quit()
+    quit()
+main()
