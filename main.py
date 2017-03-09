@@ -7,7 +7,7 @@ from sprite.pallettowninterior import PalletTownSprite
 version = "1.0.0 BETA"
 SCALE = 3
 clock = pygame.time.Clock()
-GREEN = (124,252,0);
+BLACK = (0,0,0);
 screen = None
 
 def main():
@@ -25,7 +25,7 @@ def main():
 
     while running:
         clock.tick(60)
-        screen.fill(GREEN)
+        screen.fill(BLACK)
         background_group.draw(screen);
         pygame.display.flip()
         for event in pygame.event.get():
