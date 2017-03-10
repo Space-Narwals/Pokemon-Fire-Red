@@ -47,7 +47,7 @@ def main():
                     drawvLine = False
                 if v == 480:
                     drawhLine = False
-
+        pygame.draw.rect(screen, (0, 0, 255), [338, 216, 16 * SCALE, 16 * SCALE])
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -55,13 +55,13 @@ def main():
                 print(event)
 
         keys = pygame.key.get_pressed();
-        if keys[pygame.K_UP]:
-            background.move_block("up");
         if keys[pygame.K_DOWN]:
+            background.move_block("up");
+        if keys[pygame.K_UP]:
             background.move_block("down");
-        if keys[pygame.K_RIGHT]:
-            background.move_block("right");
         if keys[pygame.K_LEFT]:
+            background.move_block("right");
+        if keys[pygame.K_RIGHT]:
             background.move_block("left");
 
 
