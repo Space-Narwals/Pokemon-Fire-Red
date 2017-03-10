@@ -7,6 +7,7 @@ version = "1.0.0 BETA"
 SCALE = 3
 clock = pygame.time.Clock()
 BLACK = (0, 0, 0);
+debug = True
 
 def main():
     running = True
@@ -18,16 +19,35 @@ def main():
     pygame.display.set_caption("Pokemon Fire Red " + version)
     screen = pygame.display.set_mode((240 * SCALE, 160 * SCALE))
 
-    #Setup background stuff.
     background = sprite_manager.PalletTownSpawnSprite(screen);
     background_group = pygame.sprite.RenderPlain(background);
+    #Setup background stuff.
 
     #Initilize game loop.
     while running:
         clock.tick(60);
+
         screen.fill(BLACK)
         background.update();
         background_group.draw(screen);
+        #Draw grid
+        if debug == True:
+            drawvLine = True
+            drawhLine = True
+            x = 0
+            y = 0
+            h = 0
+            v = 24
+            while drawvLine:
+                pygame.draw.line(screen, (0, 255, 0), [x, y], [x, 480], 1)
+                x = x + 16 * SCALE
+                pygame.draw.line(screen, (0, 255, 0), [h, v], [720, v], 1)
+                v = v + 16 * SCALE
+                if x == 720:
+                    drawvLine = False
+                if v == 480:
+                    drawhLine = False
+
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -43,6 +63,8 @@ def main():
             background.move_block("right");
         if keys[pygame.K_LEFT]:
             background.move_block("left");
+
+
     quit()
 
 if __name__ == "__main__": main()
